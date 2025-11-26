@@ -82,14 +82,14 @@ Cada exercício possui duas implementações:
 - **Fórmula**: Cada thread processa `[inicio, inicio + numeroPorThread)`
 
 #### Vantagens
-- ✅ Implementação simples
-- ✅ Sem overhead de sincronização durante processamento
-- ✅ Localidade de cache (cada thread trabalha em range contíguo)
+-  Implementação simples
+-  Sem overhead de sincronização durante processamento
+-  Localidade de cache (cada thread trabalha em range contíguo)
 
 #### Desvantagens
-- ❌ **Desbalanceamento de carga**: Intervalos maiores têm menos primos (densidade desigual)
-- ❌ Thread que processa [1-1M] termina antes da que processa [9M-10M]
-- ❌ Eficiência cai com distribuição não-uniforme de carga
+-  **Desbalanceamento de carga**: Intervalos maiores têm menos primos (densidade desigual)
+-  Thread que processa [1-1M] termina antes da que processa [9M-10M]
+-  Eficiência cai com distribuição não-uniforme de carga
 
 #### Sincronização
 - **Redução final**: Soma contadores locais (`countsParciais[]`)
@@ -103,14 +103,14 @@ Cada exercício possui duas implementações:
 - **Granularidade**: Blocos de 1000 números (ajustável)
 
 #### Vantagens
-- ✅ **Balanceamento automático**: Thread lenta não atrasa outras
-- ✅ Adapta-se a heterogeneidade (threads mais rápidas processam mais blocos)
-- ✅ Eficiência maior em cargas desbalanceadas
+-  **Balanceamento automático**: Thread lenta não atrasa outras
+-  Adapta-se a heterogeneidade (threads mais rápidas processam mais blocos)
+-  Eficiência maior em cargas desbalanceadas
 
 #### Desvantagens
-- ❌ **Overhead de sincronização**: `AtomicInteger.getAndAdd()` em cada bloco
-- ❌ Menos localidade de cache (threads podem pular entre ranges)
-- ❌ Contenção no `proximoNumero` se blocos forem muito pequenos
+-  **Overhead de sincronização**: `AtomicInteger.getAndAdd()` em cada bloco
+-  Menos localidade de cache (threads podem pular entre ranges)
+-  Contenção no `proximoNumero` se blocos forem muito pequenos
 
 #### Sincronização
 - **AtomicInteger proximoNumero**: Coordena alocação de blocos
